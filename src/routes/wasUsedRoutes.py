@@ -1,7 +1,10 @@
-import re
-from fastapi import APIRouter, HTTPException, Depends, status
+from fastapi import APIRouter, HTTPException, Depends, status, Body
 
 from src.database.databaseNeo4j import neo4j_driver
+
+from src.models.activityModel import ActivityModel
+from src.models.entityModel import EntityModel
+from src.models.activityEntityModel import ActivityEntityModel
 
 router = APIRouter(
    prefix = "/was-used",
@@ -11,28 +14,19 @@ router = APIRouter(
 
 # ?activity={activity}&entity={entity}
 @router.post('/post', response_description="Create Was Used")
-async def create_was_used():
-   activity = {
-      'name': 'Create User',
-      'type': 'activity',
-      'start_time': 'time1',
-      'end_time': 'time2'
-   }
-   
-   entity = {
-      'name': 'User',
-      'type': 'entity-user',
-   }
+async def create_was_used(data: ActivityEntityModel = Body(...)):
+   activity = dict(data.activity)
+   entity = dict(data.entity)
    
    query = (
-      "MERGE (activity:Activity { name: $activity.name, type: $activity.type, start_time: $activity.start_time, end_time: $activity.end_time }) "
-      "MERGE (entity:Entity { name: $entity }) "
+      "MERGE (activity:Activity { name: $activity.name, provType: $activity.provType, start_time: $activity.start_time, end_time: $activity.end_time }) "
+      "MERGE (entity:Entity { name: $entity.name, provType: $entity.provType }) "
       "CREATE (activity)-[:USED]->(entity) "
       "RETURN activity, entity"
    )
    
    with neo4j_driver.session() as session:      
-      result = session.run(query, activity=activity, entity=entity['name'])
+      result = session.run(query, activity=activity, entity=entity)
       resultData = result.data()[0]
       activityData = resultData['activity']
       entityData = resultData['entity']
@@ -44,18 +38,10 @@ async def create_was_used():
    return response
 
 @router.put('/update', response_description="Update Was Used")
-def update_was_used():
-   activity = {
-      'name': 'Create User',
-      'type': 'activity',
-      'start_time': 'time1',
-      'end_time': 'time3'
-   }
+def update_was_used(data: ActivityEntityModel = Body(...)):
+   activity = dict(data.activity)
+   entity = dict(data.entity)
    
-   entity = {
-      'name': 'User',
-      'type': 'entity-user',
-   }
    searchRelationship = (
       "MATCH (activity:Activity) WHERE activity.name = $activity.name "
       "MATCH (entity:Entity) WHERE entity.name = $entity.name "
@@ -70,7 +56,6 @@ def update_was_used():
       "SET activity.end_time = $activity.end_time "
       "RETURN rel, activity, entity"
    )
-   
    
    with neo4j_driver.session() as session:
       checkRelationship = session.run(query=searchRelationship, activity=activity, entity=entity)
