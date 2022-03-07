@@ -1,12 +1,12 @@
-from fastapi import APIRouter, HTTPException, Depends, status
+# from fastapi import APIRouter, HTTPException, Depends, status
 
-from src.database.databaseNeo4j import neo4j_driver
+# from src.database.databaseNeo4j import neo4j_driver
 
-router = APIRouter(
-   prefix = "/relationship",
-   tags = ["Relationship Router"],
-   responses = {404: {"description": "Not Found"}},
-)
+# router = APIRouter(
+#    prefix = "/relationship",
+#    tags = ["Relationship Router"],
+#    responses = {404: {"description": "Not Found"}},
+# )
 
 # # ?activity={activity}&entity={entity}
 # @router.post('/was-used', response_description="Was Used")
@@ -14,14 +14,21 @@ router = APIRouter(
 #    activity = {
 #       'name': 'Create User',
 #       'type': 'activity',
-#       'start_time': 'time1',
-#       'end_time': 'time2'
+#       'start-time': 'time1',
+#       'end-time': 'time2'
 #    }
    
 #    entity = {
 #       'name': 'User',
 #       'type': 'entity-user',
 #    }
+   
+#    searchRelationship = (
+#       "MATCH (activity:Activity) WHERE activity.name = $activity RETURN activity "
+#       "MATCH (entity:Entity) WHERE entity.name = $entity RETURN entity "
+#       "MATCH (activity)-[relationship]->(entity) WHERE relationship = USED "
+#       "RETURN relationship"
+#    )
    
 #    query = (
 #       "MERGE (activity:Activity { name: $activity.name, type: $activity.type, start_time: $activity.start_time, end_time: $activity.end_time }) "
