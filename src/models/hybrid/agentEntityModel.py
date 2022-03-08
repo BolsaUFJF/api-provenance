@@ -17,7 +17,6 @@ class AgentEntityModel(BaseModel):
             'agent': {
                "name": "Agent Name",
                "provType": "agent-type",
-               "data": {}  
             },
             'entity': {
                "name": "Entity Name",
@@ -38,15 +37,13 @@ class UpdateAgentEntityModel(BaseModel):
       arbitrary_types_allowed = True
       schema_extra = {
          "example": {
-            'agent1': {
+            'agent': {
                "name": "Agent Name",
                "provType": "agent-type",
-               "data": {}  
             },
-            'agent2': {
-               "name": "Agent Name",
-               "provType": "agent-type",
-               "data": {} 
+            'entity': {
+               "name": "Entity Name",
+               "provType": "activity" 
             },         
-         }  
+         }
       }

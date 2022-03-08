@@ -4,7 +4,6 @@ from typing import Optional
 class AgentModel(BaseModel):
    name: str = Field(...)
    provType: str = Field(...)
-   pki: dict = Field(...)
    
    class Config:
       allow_population_by_field_name = True
@@ -13,14 +12,12 @@ class AgentModel(BaseModel):
          "example": {
             "name": "Agent Name",
             "provType": "agent-type",
-            "data": {}   
          }
       }
    
    def __iter__(self):
       yield 'name', self.name
       yield 'provType', self.provType
-      yield 'data', self.data
       
 class UpdateAgentModel(BaseModel):
    name: Optional[str]
@@ -33,6 +30,5 @@ class UpdateAgentModel(BaseModel):
          "example": {
             "name": "Agent Name",
             "provType": "agent-type",
-            "pki": {}    
          }
       }

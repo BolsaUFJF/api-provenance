@@ -23,7 +23,6 @@ class ActivityAgentModel(BaseModel):
             'agent': {
                "name": "Agent Name",
                "provType": "agent-type",
-               "data": {}  
             },         
          }
       }
@@ -40,15 +39,15 @@ class UpdateActivityAgentModel(BaseModel):
       arbitrary_types_allowed = True
       schema_extra = {
         "example": {
-            'agent1': {
-               "name": "Agent Name",
-               "provType": "agent-type",
-               "data": {}  
+            'activity': {
+               'name': 'Activity Name',
+               'provType': 'activity',
+               'start_time': 'time1',
+               'end_time': 'time3'   
             },
-            'agent2': {
+            'agent': {
                "name": "Agent Name",
                "provType": "agent-type",
-               "data": {} 
             },         
-         }  
+         }
       }
