@@ -1,8 +1,8 @@
 from pydantic import BaseModel, Field
 from typing import Optional
 
-from models.provenance.activityModel import ActivityModel
-from models.provenance.entityModel import EntityModel
+from src.models.provenance.activityModel import ActivityModel
+from src.models.provenance.entityModel import EntityModel
 
 class ActivityEntityModel(BaseModel):
    activity: ActivityModel = Field(...)

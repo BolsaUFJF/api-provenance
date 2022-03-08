@@ -1,7 +1,7 @@
 from pydantic import BaseModel, Field
 from typing import Optional
 
-from models.provenance.agentModel import AgentModel
+from src.models.provenance.agentModel import AgentModel
 
 class Model(BaseModel):
    activity1: AgentModel = Field(...)
