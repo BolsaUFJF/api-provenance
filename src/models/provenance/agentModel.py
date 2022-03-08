@@ -1,7 +1,7 @@
 from pydantic import BaseModel, Field
 from typing import Optional
 
-class EntityModel(BaseModel):
+class AgentModel(BaseModel):
    name: str = Field(...)
    provType: str = Field(...)
    pki: dict = Field(...)
