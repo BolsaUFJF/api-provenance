@@ -5,7 +5,7 @@ from src.models.provenance.activityModel import ActivityModel
 from src.models.provenance.entityModel import EntityModel
 from src.models.provenance.agentModel import AgentModel
 
-class Model(BaseModel):
+class TwoAgentModel(BaseModel):
    agent1: AgentModel = Field(...)
    agent2: AgentModel = Field(...)
    
@@ -29,7 +29,7 @@ class Model(BaseModel):
       yield 'agent1', self.agent1
       yield 'agent2', self.agent2
       
-class UpdateModel(BaseModel):
+class UpdateTwoAgentModel(BaseModel):
    agent1: Optional[AgentModel]
    agent2: Optional[AgentModel]
    
