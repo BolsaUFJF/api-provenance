@@ -1,9 +1,7 @@
-from fastapi import APIRouter, HTTPException, Depends, status, Body
+from fastapi import APIRouter, Body
 
 from src.database.databaseNeo4j import neo4j_driver
 
-from src.models.provenance.activityModel import ActivityModel
-from src.models.provenance.entityModel import EntityModel
 from src.models.hybrid.twoActivityModel import TwoActivityModel
 
 router = APIRouter(

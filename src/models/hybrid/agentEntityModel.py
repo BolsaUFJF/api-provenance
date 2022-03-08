@@ -1,7 +1,6 @@
 from pydantic import BaseModel, Field
 from typing import Optional
 
-from src.models.provenance.activityModel import ActivityModel
 from src.models.provenance.entityModel import EntityModel
 from src.models.provenance.agentModel import AgentModel
 
