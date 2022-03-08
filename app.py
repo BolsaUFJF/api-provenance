@@ -2,6 +2,7 @@ from fastapi import FastAPI
 
 from src.routes.relationshipsRoutes import router as relationships_routes
 
+from src.controller.createTestData import generateData
 app = FastAPI()
 
 app.include_router(relationships_routes)
@@ -25,3 +26,8 @@ def root():
          }
       }
    }
+   
+@app.get('/test', response_description="Test")
+async def test():
+   await generateData()
+   return "hello"

@@ -25,6 +25,10 @@ class ActivityEntityModel(BaseModel):
             },         
          }
       }
+      
+   # def __init__(self, activity: ActivityModel, entity: EntityModel):
+   #    self.activity = activity
+   #    self.entity = entity
    
    def __iter__(self):
       yield 'activity', self.activity
