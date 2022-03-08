@@ -1,11 +1,11 @@
 from pydantic import BaseModel, Field
 from typing import Optional
 
-from src.models.provenance.agentModel import AgentModel
+from src.models.provenance.activityModel import ActivityModel
 
-class Model(BaseModel):
-   activity1: AgentModel = Field(...)
-   activity2: AgentModel = Field(...)
+class TwoActivityModel(BaseModel):
+   activity1: ActivityModel = Field(...)
+   activity2: ActivityModel = Field(...)
    
    class Config:
       allow_population_by_field_name = True
@@ -31,9 +31,9 @@ class Model(BaseModel):
       yield 'activity1', self.activity1
       yield 'activity2', self.activity2
       
-class UpdateModel(BaseModel):
-   activity1: Optional[AgentModel]
-   activity2: Optional[AgentModel]
+class UpdateTwoActivityModel(BaseModel):
+   activity1: Optional[ActivityModel]
+   activity2: Optional[ActivityModel]
    
    class Config:
       arbitrary_types_allowed = True
