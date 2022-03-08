@@ -27,12 +27,10 @@ class ActivityEntityModel(BaseModel):
       }
    
    def __iter__(self):
-      yield 'name', self.name
-      yield 'provType', self.provType
-      yield 'start_time', self.start_time
-      yield 'end_time', self.end_time
+      yield 'activity', self.activity
+      yield 'entity', self.entity
       
-class UpdateActivityModel(BaseModel):
+class UpdateActivityEntityModel(BaseModel):
    activity: Optional[ActivityModel]
    entity: Optional[EntityModel]
    
