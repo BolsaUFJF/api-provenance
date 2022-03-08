@@ -11,7 +11,7 @@ router = APIRouter(
 )
 
 @router.post('/post', response_description="Create Was Associated To")
-async def create_was_used(data: ActivityAgentModel = Body(...)):
+async def create_was_associated_with(data: ActivityAgentModel = Body(...)):
    activity = dict(data.activity)
    agent = dict(data.agent)
    

@@ -12,7 +12,7 @@ router = APIRouter(
 
 # ?activity={activity}&entity={entity}
 @router.post('/post', response_description="Create Acted On Behalf Of")
-async def create_was_used(data: TwoAgentModel = Body(...)):
+async def create_acted_on_behalf_of(data: TwoAgentModel = Body(...)):
    agent1 = dict(data.agent1)
    agent2 = dict(data.agent2)
    

@@ -12,7 +12,7 @@ router = APIRouter(
 
 # ?activity={activity}&entity={entity}
 @router.post('/post', response_description="Create Was Derived From")
-async def create_was_used(data: TwoEntityModel = Body(...)):
+async def create_was_derived_from(data: TwoEntityModel = Body(...)):
    entity1 = dict(data.entity1)
    entity2 = dict(data.entity2)
    
