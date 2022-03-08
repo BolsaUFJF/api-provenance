@@ -24,7 +24,7 @@ async def create_was_used(data: TwoEntityModel = Body(...)):
    query = (
       "MERGE (entity1:Entity { name: $entity1.name, provType: $entity1.provType }) "
       "MERGE (entity2:Entity { name: $entity2.name, provType: $entity2.provType }) "
-      "CREATE (entity1)-[:WAS_INFORMED_BY]->(entity2) "
+      "CREATE (entity1)-[:WAS_DERIVED_FROM]->(entity2) "
       "RETURN entity1, entity2"
    )
    
