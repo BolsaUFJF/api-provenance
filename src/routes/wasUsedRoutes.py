@@ -2,9 +2,9 @@ from fastapi import APIRouter, HTTPException, Depends, status, Body
 
 from src.database.databaseNeo4j import neo4j_driver
 
-from models.provenance.activityModel import ActivityModel
-from models.provenance.entityModel import EntityModel
-from models.hybrid.activityEntityModel import ActivityEntityModel
+from src.models.provenance.activityModel import ActivityModel
+from src.models.provenance.entityModel import EntityModel
+from src.models.hybrid.activityEntityModel import ActivityEntityModel
 
 router = APIRouter(
    prefix = "/was-used",
