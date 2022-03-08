@@ -35,3 +35,31 @@ async def create_was_used(data: ActivityEntityModel = Body(...)):
       'entity': entityData
    }
    return response
+
+@router.put('/update', response_description="Update Was Used")
+def update_was_used(data: ActivityEntityModel = Body(...)):
+   activity = dict(data.activity)
+   entity = dict(data.entity)
+   
+   searchRelationship = (
+      "MATCH (activity:Activity) WHERE activity.name = $activity.name "
+      "MATCH (entity:Entity) WHERE entity.name = $entity.name "
+      "MATCH (entity)-[rel:WASGENERATEDBY]->(activity) "
+      "RETURN rel"
+   )
+   
+   query = (
+      "MATCH (activity:Activity) WHERE activity.name = $activity.name "
+      "MATCH (entity:Entity) WHERE entity.name = $entity.name "
+      "MATCH (entity)-[rel:WASGENERATEDBY]->(activity) "
+      "SET activity.end_time = $activity.end_time "
+      "RETURN rel, activity, entity"
+   )
+   
+   with neo4j_driver.session() as session:
+      checkRelationship = session.run(query=searchRelationship, activity=activity, entity=entity)
+      if checkRelationship.data():
+         result = session.run(query, activity=activity, entity=entity)
+         resultData = result.data()[0]
+   
+   return resultData
