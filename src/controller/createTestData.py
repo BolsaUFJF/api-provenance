@@ -50,7 +50,7 @@ async def generateData():
    await create_was_generated_by(ActivityEntityModel(activity=activityCreateDocument, entity=entityDocumentData))
    await create_was_associated_with(ActivityAgentModel(activity=activityCreateDocument, agent=agentUser))
    
-   await create_was_informed_by(TwoActivityModel(activity1=activityCreateDocument, activity2=activityConvertBase))
+   await create_was_informed_by(TwoActivityModel(activity1=activityConvertBase, activity2=activityCreateDocument))
    await create_was_used(ActivityEntityModel(activity=activityConvertBase, entity=entityDocumentData))
    await create_was_generated_by(ActivityEntityModel(activity=activityConvertBase, entity=entityDocumentBase64))
    
