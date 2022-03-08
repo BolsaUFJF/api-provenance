@@ -12,7 +12,7 @@ router = APIRouter(
 
 # ?activity={activity}&entity={entity}
 @router.post('/post', response_description="Create Was Informed By")
-async def create_was_used(data: TwoActivityModel = Body(...)):
+async def create_was_informed_by(data: TwoActivityModel = Body(...)):
    activity1 = dict(data.activity1)
    activity2 = dict(data.activity2)
    

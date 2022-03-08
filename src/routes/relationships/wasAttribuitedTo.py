@@ -12,7 +12,7 @@ router = APIRouter(
 
 # ?activity={activity}&entity={entity}
 @router.post('/post', response_description="Create Was Attribuited To")
-async def create_was_used(data: AgentEntityModel = Body(...)):
+async def create_was_attribuited_to(data: AgentEntityModel = Body(...)):
    entity = dict(data.entity)
    agent = dict(data.agent)
    
