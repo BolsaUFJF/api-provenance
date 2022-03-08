@@ -21,7 +21,7 @@ class ActivityEntityModel(BaseModel):
             },
             'entity': {
                "name": "Entity Name",
-               "provType": "activity" 
+               "provType": "entity-type" 
             },         
          }
       }
@@ -46,7 +46,7 @@ class UpdateActivityEntityModel(BaseModel):
             },
             'entity': {
                "name": "Entity Name",
-               "provType": "activity" 
+               "provType": "entity-type" 
             },         
          }    
       }

@@ -8,6 +8,7 @@ from src.routes.wasGeneratedBy import router as was_generated_by_routes
 from src.routes.wasAssociatedWith import router as was_associated_with_routes
 from src.routes.wasAttribuitedTo import router as was_attribuited_to_routes
 from src.routes.wasInformedBy import router as was_informed_by_routes
+from src.routes.wasDerivedFrom import router as was_derived_from_routes
 
 app = FastAPI()
 
@@ -16,6 +17,7 @@ app.include_router(was_generated_by_routes)
 app.include_router(was_associated_with_routes)
 app.include_router(was_attribuited_to_routes)
 app.include_router(was_informed_by_routes)
+app.include_router(was_derived_from_routes)
 
 @app.get('/', response_description="Root")
 def root():

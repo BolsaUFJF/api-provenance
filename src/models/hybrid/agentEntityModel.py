@@ -20,7 +20,7 @@ class AgentEntityModel(BaseModel):
             },
             'entity': {
                "name": "Entity Name",
-               "provType": "activity" 
+               "provType": "entity-type" 
             },         
          }
       }
@@ -43,7 +43,7 @@ class UpdateAgentEntityModel(BaseModel):
             },
             'entity': {
                "name": "Entity Name",
-               "provType": "activity" 
+               "provType": "entity-type" 
             },         
          }
       }

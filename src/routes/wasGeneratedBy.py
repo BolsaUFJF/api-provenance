@@ -20,7 +20,7 @@ async def create_was_used(data: ActivityEntityModel = Body(...)):
    query = (
       "MERGE (activity:Activity { name: $activity.name, provType: $activity.provType, start_time: $activity.start_time, end_time: $activity.end_time }) "
       "MERGE (entity:Entity { name: $entity.name, provType: $entity.provType }) "
-      "CREATE (entity)-[:WASGENERATEDBY]->(activity) "
+      "CREATE (entity)-[:WAS_GENERATED_BY]->(activity) "
       "RETURN activity, entity"
    )
    

@@ -13,13 +13,13 @@ class TwoActivityModel(BaseModel):
       schema_extra = {
          "example": {
             'activity1': {
-               'name': 'Activity Name 1',
+               'name': 'Activity Name',
                'provType': 'activity',
                'start_time': 'time1',
                'end_time': 'time2'   
             },
             'activity2': {
-               'name': 'Activity Name 2',
+               'name': 'Activity Name',
                'provType': 'activity',
                'start_time': 'time1',
                'end_time': 'time2'   
@@ -40,13 +40,13 @@ class UpdateTwoActivityModel(BaseModel):
       schema_extra = {
          "example": {
             'activity1': {
-               'name': 'Activity Name 1',
+               'name': 'Activity Name',
                'provType': 'activity',
                'start_time': 'time1',
                'end_time': 'time3'   
             },
             'activity2': {
-               'name': 'Activity Name 2',
+               'name': 'Activity Name',
                'provType': 'activity',
                'start_time': 'time1',
                'end_time': 'time3'   

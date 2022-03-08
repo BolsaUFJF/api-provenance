@@ -5,7 +5,7 @@ from src.models.provenance.activityModel import ActivityModel
 from src.models.provenance.entityModel import EntityModel
 from src.models.provenance.agentModel import AgentModel
 
-class Model(BaseModel):
+class TwoEntityModel(BaseModel):
    entity1: EntityModel = Field(...)
    entity2: EntityModel = Field(...)
    
@@ -16,11 +16,11 @@ class Model(BaseModel):
          "example": {
             'entity1': {
                "name": "Entity Name",
-               "provType": "activity" 
+               "provType": "entity-type" 
             },
             'entity2': {
                "name": "Entity Name",
-               "provType": "activity"    
+               "provType": "entity-type"    
             },         
          }
       }
@@ -29,7 +29,7 @@ class Model(BaseModel):
       yield 'entity1', self.entity1
       yield 'entity2', self.entity2
       
-class UpdateModel(BaseModel):
+class UpdateTwoEntityModel(BaseModel):
    entity1: Optional[EntityModel]
    entity2: Optional[EntityModel]
    
@@ -39,11 +39,11 @@ class UpdateModel(BaseModel):
          "example": {
             'entity1': {
                "name": "Entity Name",
-               "provType": "activity" 
+               "provType": "entity-type" 
             },
             'entity2': {
                "name": "Entity Name",
-               "provType": "activity"    
+               "provType": "entity-type"    
             },         
          }  
       }
