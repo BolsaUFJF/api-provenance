@@ -18,7 +18,7 @@ class ActivityAgentModel(BaseModel):
                'name': 'Activity Name',
                'provType': 'activity',
                'start_time': 'time1',
-               'end_time': 'time3'   
+               'end_time': 'time2'   
             },
             'agent': {
                "name": "Agent Name",

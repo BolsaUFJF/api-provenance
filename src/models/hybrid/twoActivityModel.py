@@ -16,13 +16,13 @@ class Model(BaseModel):
                'name': 'Activity Name 1',
                'provType': 'activity',
                'start_time': 'time1',
-               'end_time': 'time3'   
+               'end_time': 'time2'   
             },
             'activity2': {
                'name': 'Activity Name 2',
                'provType': 'activity',
                'start_time': 'time1',
-               'end_time': 'time3'   
+               'end_time': 'time2'   
             },         
          }
       }
