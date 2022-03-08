@@ -22,7 +22,7 @@ class EntityModel(BaseModel):
       yield 'provType', self.provType
       yield 'data', self.data
       
-class UpdateEntityModel(BaseModel):
+class UpdateAgentModel(BaseModel):
    name: Optional[str]
    provType: Optional[str]
    pki: Optional[str]
