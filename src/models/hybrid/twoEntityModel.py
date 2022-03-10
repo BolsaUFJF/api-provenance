@@ -13,11 +13,13 @@ class TwoEntityModel(BaseModel):
          "example": {
             'entity1': {
                "name": "Entity Name",
-               "provType": "entity-type" 
+               "provType": "entity-type",
+               "data": {} 
             },
             'entity2': {
                "name": "Entity Name",
-               "provType": "entity-type"    
+               "provType": "entity-type",
+               "data": {} 
             },         
          }
       }
@@ -36,11 +38,13 @@ class UpdateTwoEntityModel(BaseModel):
          "example": {
             'entity1': {
                "name": "Entity Name",
-               "provType": "entity-type" 
+               "provType": "entity-type",
+               "data": {} 
             },
             'entity2': {
                "name": "Entity Name",
-               "provType": "entity-type"    
+               "provType": "entity-type",
+               "data": {}    
             },         
          }  
       }
