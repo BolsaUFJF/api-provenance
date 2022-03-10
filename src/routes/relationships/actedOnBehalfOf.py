@@ -20,8 +20,8 @@ async def create_acted_on_behalf_of(data: TwoAgentModel = Body(...)):
    print(agent2)
    
    query = (
-      "MERGE (agent1:Agent { name: $agent1.name, provType: $agent1.provType }) "
-      "MERGE (agent2:Agent { name: $agent2.name, provType: $agent2.provType }) "
+      "MERGE (agent1:Agent { name: $agent1.name, provType: $agent1.provType, data: $agent1.data }) "
+      "MERGE (agent2:Agent { name: $agent2.name, provType: $agent2.provType, data: $agent2.data }) "
       "CREATE (agent1)-[:ACTED_ON_BEHALF_OF]->(agent2) "
       "RETURN agent1, agent2"
    )
