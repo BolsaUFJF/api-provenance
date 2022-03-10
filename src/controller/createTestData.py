@@ -52,7 +52,11 @@ entityDocumentBase64 = {
 
 agentUser = {
    "name": "User",
-   "provType": "agent-user"
+   "provType": "agent-user",
+   "data": {
+      "pki": "key",
+      "work_for": "company"
+   }
 }
 
 async def generateData():
