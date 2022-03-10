@@ -17,7 +17,7 @@ async def create_was_generated_by(data: ActivityEntityModel = Body(...)):
    
    query = (
       "MERGE (activity:Activity { name: $activity.name, provType: $activity.provType, start_time: $activity.start_time, end_time: $activity.end_time }) "
-      "MERGE (entity:Entity { name: $entity.name, provType: $entity.provType }) "
+      "MERGE (entity:Entity { name: $entity.name, provType: $entity.provType, data: $entity.data }) "
       "CREATE (entity)-[:WAS_GENERATED_BY]->(activity) "
       "RETURN activity, entity"
    )

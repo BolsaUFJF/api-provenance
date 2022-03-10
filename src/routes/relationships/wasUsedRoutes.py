@@ -4,6 +4,8 @@ from src.database.databaseNeo4j import neo4j_driver
 
 from src.models.hybrid.activityEntityModel import ActivityEntityModel
 
+import json
+
 router = APIRouter(
    prefix = "/was-used",
    tags = ["Was Used Relationship"],
@@ -13,17 +15,19 @@ router = APIRouter(
 # ?activity={activity}&entity={entity}
 @router.post('/post', response_description="Create Was Used")
 async def create_was_used(data: ActivityEntityModel = Body(...)):
+   print(data)
    activity = dict(data.activity)
    entity = dict(data.entity)
    
    query = (
       "MERGE (activity:Activity { name: $activity.name, provType: $activity.provType, start_time: $activity.start_time, end_time: $activity.end_time }) "
-      "MERGE (entity:Entity { name: $entity.name, provType: $entity.provType }) "
+      "MERGE (entity:Entity { name: $entity.name, provType: $entity.provType, data: $entity.data }) "
       "CREATE (activity)-[:USED]->(entity) "
       "RETURN activity, entity"
    )
    
-   with neo4j_driver.session() as session:      
+   with neo4j_driver.session() as session:   
+      print(entity)   
       result = session.run(query, activity=activity, entity=entity)
       resultData = result.data()[0]
       activityData = resultData['activity']
