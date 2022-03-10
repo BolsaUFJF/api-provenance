@@ -34,11 +34,20 @@ activitySendDocument = {
 
 entityDocumentData = {
    "name": "Document Data",
-   "provType": "document-data"
+   "provType": "document-data",
+   "data": {
+      "format": "file format",
+      "path": "file location",
+      "title": "filename"
+   }
 }
 entityDocumentBase64 = {
    "name": "Document Base 64",
-   "provType": "document-base"
+   "provType": "document-base",
+   "data": {
+      "data_encoded": "base 64 data",
+      "mine": "@file/file formart"
+   }
 }
 
 agentUser = {
