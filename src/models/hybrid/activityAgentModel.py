@@ -22,6 +22,7 @@ class ActivityAgentModel(BaseModel):
             'agent': {
                "name": "Agent Name",
                "provType": "agent-type",
+               "data": {}
             },         
          }
       }
@@ -47,6 +48,7 @@ class UpdateActivityAgentModel(BaseModel):
             'agent': {
                "name": "Agent Name",
                "provType": "agent-type",
+               "data": {}
             },         
          }
       }
