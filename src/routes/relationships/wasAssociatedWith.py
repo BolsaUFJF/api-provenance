@@ -17,7 +17,7 @@ async def create_was_associated_with(data: ActivityAgentModel = Body(...)):
    
    query = (
       "MERGE (activity:Activity { name: $activity.name, provType: $activity.provType, start_time: $activity.start_time, end_time: $activity.end_time }) "
-      "MERGE (agent:Agent { name: $agent.name, provType: $agent.provType }) "
+      "MERGE (agent:Agent { name: $agent.name, provType: $agent.provType, data: $agent.data }) "
       "CREATE (activity)-[:WAS_ASSOCIATED_WITH]->(agent) "
       "RETURN activity, agent"
    )

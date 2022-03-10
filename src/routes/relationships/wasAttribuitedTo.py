@@ -18,8 +18,8 @@ async def create_was_attribuited_to(data: AgentEntityModel = Body(...)):
    
    
    query = (
-      "MERGE (agent:Agent { name: $agent.name, provType: $agent.provType }) "
-      "MERGE (entity:Entity { name: $entity.name, provType: $entity.provType }) "
+      "MERGE (agent:Agent { name: $agent.name, provType: $agent.provType, data: $agent.data }) "
+      "MERGE (entity:Entity { name: $entity.name, provType: $entity.provType, data: $entity.data }) "
       "CREATE (entity)-[:WAS_ATTRIBUITED_TO]->(agent) "
       "RETURN agent, entity"
    )

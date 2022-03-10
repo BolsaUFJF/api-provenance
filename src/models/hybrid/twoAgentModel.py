@@ -15,10 +15,12 @@ class TwoAgentModel(BaseModel):
             'agent1': {
                "name": "Agent Name",
                "provType": "agent-type",
+               "data": {}
             },
             'agent2': {
                "name": "Agent Name",
-               "provType": "agent-type", 
+               "provType": "agent-type",
+               "data": {}
             },         
          }
       }
@@ -38,10 +40,12 @@ class UpdateTwoAgentModel(BaseModel):
             'agent1': {
                "name": "Agent Name",
                "provType": "agent-type",
+               "data": {}
             },
             'agent2': {
                "name": "Agent Name",
-               "provType": "agent-type", 
+               "provType": "agent-type",
+               "data": {}
             },         
          }   
       }

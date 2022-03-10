@@ -20,8 +20,8 @@ async def create_was_derived_from(data: TwoEntityModel = Body(...)):
    print(entity2)
    
    query = (
-      "MERGE (entity1:Entity { name: $entity1.name, provType: $entity1.provType }) "
-      "MERGE (entity2:Entity { name: $entity2.name, provType: $entity2.provType }) "
+      "MERGE (entity1:Entity { name: $entity1.name, provType: $entity1.provType, data: $entity1.data }) "
+      "MERGE (entity2:Entity { name: $entity2.name, provType: $entity2.provType, data: $entity2.data }) "
       "CREATE (entity1)-[:WAS_DERIVED_FROM]->(entity2) "
       "RETURN entity1, entity2"
    )

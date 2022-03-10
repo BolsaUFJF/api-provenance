@@ -16,10 +16,12 @@ class AgentEntityModel(BaseModel):
             'agent': {
                "name": "Agent Name",
                "provType": "agent-type",
+               "data": {}
             },
             'entity': {
                "name": "Entity Name",
-               "provType": "entity-type" 
+               "provType": "entity-type",
+               "data": {} 
             },         
          }
       }
@@ -39,10 +41,12 @@ class UpdateAgentEntityModel(BaseModel):
             'agent': {
                "name": "Agent Name",
                "provType": "agent-type",
+               "data": {}
             },
             'entity': {
                "name": "Entity Name",
-               "provType": "entity-type" 
+               "provType": "entity-type",
+               "data": {} 
             },         
          }
       }

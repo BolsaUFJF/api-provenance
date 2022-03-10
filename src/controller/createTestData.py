@@ -34,16 +34,29 @@ activitySendDocument = {
 
 entityDocumentData = {
    "name": "Document Data",
-   "provType": "document-data"
+   "provType": "document-data",
+   "data": {
+      "format": "file format",
+      "path": "file location",
+      "title": "filename"
+   }
 }
 entityDocumentBase64 = {
    "name": "Document Base 64",
-   "provType": "document-base"
+   "provType": "document-base",
+   "data": {
+      "data_encoded": "base 64 data",
+      "mine": "@file/file formart"
+   }
 }
 
 agentUser = {
    "name": "User",
-   "provType": "agent-user"
+   "provType": "agent-user",
+   "data": {
+      "pki": "key",
+      "work_for": "company"
+   }
 }
 
 async def generateData():
