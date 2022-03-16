@@ -1,11 +1,13 @@
 from fastapi import FastAPI
 
 from src.routes.relationshipsRoutes import router as relationships_routes
+from src.routes.entity.entityRoutes import router as entity_routes
 
 from src.controller.createTestData import generateData
 app = FastAPI()
 
 app.include_router(relationships_routes)
+app.include_router(entity_routes)
 
 @app.get('/', response_description="Root")
 def root():
