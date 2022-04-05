@@ -21,7 +21,7 @@ class EntityModel(BaseModel):
    def __iter__(self):
       yield 'name', self.name
       yield 'provType', self.provType
-      yield 'data', converterJWT.encodeToJWT(self.data)
+      yield 'data', str(converterJWT.encodeToJWT(self.data))
       
 class UpdateEntityModel(BaseModel):
    name: Optional[str]
