@@ -1,0 +1,48 @@
+from fastapi import APIRouter, HTTPException, Depends, status, Body
+
+from src.database.databaseNeo4j import neo4j_driver
+
+router = APIRouter(
+   prefix = "/queries",
+   tags = ["Queries on Database"],
+   responses = {404: {"description": "Not Found"}},
+)
+
+@router.get('/when-document-was-sent/{docName}', response_description="Quando o documento x foi enviado")
+async def when_document_was_sent(docName: str):
+   
+   query = (
+      "MATCH (:Entity { name: $doc })<-[:WAS_DERIVED_FROM]-(:Entity { provType: 'document-base' })"
+      "<-[:USED]-(send:Activity { provType: 'send-document'}) "
+      "RETURN send.start_time AS start_time, send.end_time AS end_time"
+   )
+   
+   with neo4j_driver.session() as session:
+      result = session.run(query, doc=docName)
+      resultData = result.data()[0]
+   
+   return resultData
+
+@router.get('/when-document-was-converted/{docName}', response_description="Quando o documento x foi convertido")
+async def when_document_was_converted(docName: str):
+   query = (
+      "MATCH (entity:Entity { name: $doc })<-[r:USED]-(activity:Activity { provType: 'convert-document' })  "
+      "RETURN activity.start_time AS start_time, activity.end_time AS end_time "
+   )
+      
+   with neo4j_driver.session() as session:
+      result = session.run(query, doc=docName).data()
+      resultData = result[0]
+   return resultData
+
+@router.get('/who-sent-the-document', response_description="Quem enviou o documento")
+async def who_sent_the_document(docName: str):
+   query = (
+      "MATCH (:Entity { name: $doc })<-[:WAS_DERIVED_FROM]-(:Entity { provType: 'document-base' })"
+      "<-[:USED]-(:Activity { provType: 'send-document'})-[:WAS_ASSOCIATED_WITH]->(agent:Agent) "
+      "RETURN agent.name AS user"
+   )
+   with neo4j_driver.session() as session:
+      result = session.run(query, doc=docName).data()
+      resultData=result[0]
+   return resultData
