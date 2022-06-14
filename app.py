@@ -3,6 +3,7 @@ import json
 
 from src.routes.relationshipsRoutes import router as relationships_routes
 from src.routes.entity.entityRoutes import router as entity_routes
+from src.routes.queries.queries import router as queries_routes
 
 from src.database.databaseNeo4j import neo4j_driver
 import src.controller.converterJWT as converterJWT
@@ -12,6 +13,7 @@ app = FastAPI()
 
 app.include_router(relationships_routes)
 app.include_router(entity_routes)
+app.include_router(queries_routes)
 
 @app.get('/', response_description="Root")
 def root():
