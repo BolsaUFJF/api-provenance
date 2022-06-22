@@ -1,5 +1,6 @@
 from fastapi import APIRouter, HTTPException, Depends, status, Body
-
+import json
+import src.controller.converterJWT as converterJWT
 from src.database.databaseNeo4j import neo4j_driver
 
 router = APIRouter(
@@ -45,4 +46,19 @@ async def who_sent_the_document(docName: str):
    with neo4j_driver.session() as session:
       result = session.run(query, doc=docName).data()
       resultData=result[0]
+   return resultData
+
+@router.get('get-erros', response_description="Erros capturados")
+async def get_erros():
+   query = (
+      "MATCH (entity:Entity { provType: 'error'}) "
+      "RETURN entity "
+   )
+   with neo4j_driver.session() as session:
+      result = session.run(query).data()
+      resultData = result
+      
+   for i in resultData:
+      value = i['entity']['data']
+      i['entity']['data'] = converterJWT.decodeJWT(value)
    return resultData
