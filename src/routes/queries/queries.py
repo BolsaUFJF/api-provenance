@@ -3,6 +3,7 @@ from fastapi import APIRouter, HTTPException, Depends, status, Body
 import json
 import src.controller.converterJWT as converterJWT
 from src.database.databaseNeo4j import neo4j_driver
+import hashlib
 
 router = APIRouter(
    prefix = "/queries",
@@ -78,9 +79,8 @@ async def get_document_info():
    
    resultData['n1']['data'] = converterJWT.decodeJWT(resultData['n1']['data'])
    resultData['n2']['data'] = converterJWT.decodeJWT(resultData['n2']['data'])
-   print(resultData)
    data = {
-      "base": resultData['n1']['data']['base'],
+      "base": hashlib.md5(resultData['n1']['data']['base'].encode('utf-8')).hexdigest(),
       "relationship": resultData['r'][1],
       "filename": resultData['n2']['data']['filename'],
       "format": resultData['n2']['data']['format'],
