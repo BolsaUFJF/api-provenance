@@ -1,3 +1,4 @@
+from fileinput import filename
 from fastapi import APIRouter, HTTPException, Depends, status, Body
 import json
 import src.controller.converterJWT as converterJWT
@@ -62,3 +63,28 @@ async def get_erros():
       value = i['entity']['data']
       i['entity']['data'] = converterJWT.decodeJWT(value)
    return resultData
+
+# MATCH (n1)-[r:WAS_DERIVED_FROM]->(n2) RETURN n1.name, r, n2
+
+@router.get('get-document-info', response_description="Informações sobre documentos")
+async def get_document_info():
+   query = (
+      "MATCH (n1)-[r:WAS_DERIVED_FROM]->(n2) "
+      "RETURN n1, r, n2 "
+   )
+   with neo4j_driver.session() as session:
+      result = session.run(query).data()
+      resultData = result[0]
+   
+   resultData['n1']['data'] = converterJWT.decodeJWT(resultData['n1']['data'])
+   resultData['n2']['data'] = converterJWT.decodeJWT(resultData['n2']['data'])
+   print(resultData)
+   data = {
+      "base": resultData['n1']['data']['base'],
+      "relationship": resultData['r'][1],
+      "filename": resultData['n2']['data']['filename'],
+      "format": resultData['n2']['data']['format'],
+      "path": resultData['n2']['data']['path'],
+      "size": resultData['n2']['data']['size']
+   }
+   return data
