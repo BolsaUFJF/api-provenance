@@ -75,16 +75,18 @@ async def get_document_info():
    )
    with neo4j_driver.session() as session:
       result = session.run(query).data()
-      resultData = result[0]
-   
-   resultData['n1']['data'] = converterJWT.decodeJWT(resultData['n1']['data'])
-   resultData['n2']['data'] = converterJWT.decodeJWT(resultData['n2']['data'])
-   data = {
-      "base": hashlib.md5(resultData['n1']['data']['base'].encode('utf-8')).hexdigest(),
-      "relationship": resultData['r'][1],
-      "filename": resultData['n2']['data']['filename'],
-      "format": resultData['n2']['data']['format'],
-      "path": resultData['n2']['data']['path'],
-      "size": resultData['n2']['data']['size']
-   }
-   return data
+      resultData = result
+   dataArray = []
+   for i in resultData:
+      i['n1']['data'] = converterJWT.decodeJWT(i['n1']['data'])
+      i['n2']['data'] = converterJWT.decodeJWT(i['n2']['data'])
+      data = {
+         "base": hashlib.md5(i['n1']['data']['base'].encode('utf-8')).hexdigest(),
+         "relationship": i['r'][1],
+         "filename": i['n2']['data']['filename'],
+         "format": i['n2']['data']['format'],
+         "path": i['n2']['data']['path'],
+         "size": i['n2']['data']['size']
+      }
+      dataArray.append(data)
+   return dataArray
