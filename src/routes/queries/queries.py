@@ -50,7 +50,7 @@ async def who_sent_the_document(docName: str):
       resultData=result[0]
    return resultData
 
-@router.get('get-erros', response_description="Erros capturados")
+@router.get('/get-erros', response_description="Erros capturados")
 async def get_erros():
    query = (
       "MATCH (entity:Entity { provType: 'error'}) "
@@ -67,7 +67,7 @@ async def get_erros():
 
 # MATCH (n1)-[r:WAS_DERIVED_FROM]->(n2) RETURN n1.name, r, n2
 
-@router.get('get-document-info', response_description="Informações sobre documentos")
+@router.get('/get-document-info', response_description="Informações sobre documentos")
 async def get_document_info():
    query = (
       "MATCH (n1)-[r:WAS_DERIVED_FROM]->(n2) "
