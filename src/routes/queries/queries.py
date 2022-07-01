@@ -81,7 +81,8 @@ async def get_document_info():
       i['n1']['data'] = converterJWT.decodeJWT(i['n1']['data'])
       i['n2']['data'] = converterJWT.decodeJWT(i['n2']['data'])
       data = {
-         "base": hashlib.md5(i['n1']['data']['base'].encode('utf-8')).hexdigest(),
+         "base": i['n1']['data']['base'],
+         # "base": hashlib.md5(i['n1']['data']['base'].encode('utf-8')).hexdigest(),
          "relationship": i['r'][1],
          "filename": i['n2']['data']['filename'],
          "format": i['n2']['data']['format'],
