@@ -41,13 +41,15 @@ async def when_document_was_converted(docName: str):
 @router.get('/who-sent-the-document/{docname}', response_description="Quem enviou o documento")
 async def who_sent_the_document(docName: str):
    query = (
-      "MATCH (:Entity { name: $doc })<-[:WAS_DERIVED_FROM]-(:Entity { provType: 'document-base' })"
+      "MATCH (:Entity { name: $doc })"
       "<-[:USED]-(:Activity { provType: 'send-document'})-[:WAS_ASSOCIATED_WITH]->(agent:Agent) "
-      "RETURN agent.name AS user"
+      "RETURN agent.name AS user, agent.data as data"
    )
    with neo4j_driver.session() as session:
       result = session.run(query, doc=docName).data()
       resultData=result[0]
+   resultData['data'] = converterJWT.decodeJWT(resultData['data'])
+   print(resultData)
    return resultData
 
 @router.get('/get-erros', response_description="Erros capturados")
