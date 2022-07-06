@@ -38,7 +38,7 @@ async def when_document_was_converted(docName: str):
       resultData = result[0]
    return resultData
 
-@router.get('/who-sent-the-document', response_description="Quem enviou o documento")
+@router.get('/who-sent-the-document/{docname}', response_description="Quem enviou o documento")
 async def who_sent_the_document(docName: str):
    query = (
       "MATCH (:Entity { name: $doc })<-[:WAS_DERIVED_FROM]-(:Entity { provType: 'document-base' })"
@@ -50,7 +50,7 @@ async def who_sent_the_document(docName: str):
       resultData=result[0]
    return resultData
 
-@router.get('get-erros', response_description="Erros capturados")
+@router.get('/get-erros', response_description="Erros capturados")
 async def get_erros():
    query = (
       "MATCH (entity:Entity { provType: 'error'}) "
@@ -67,7 +67,7 @@ async def get_erros():
 
 # MATCH (n1)-[r:WAS_DERIVED_FROM]->(n2) RETURN n1.name, r, n2
 
-@router.get('get-document-info', response_description="Informações sobre documentos")
+@router.get('/get-document-info', response_description="Informações sobre documentos")
 async def get_document_info():
    query = (
       "MATCH (n1)-[r:WAS_DERIVED_FROM]->(n2) "
@@ -75,16 +75,19 @@ async def get_document_info():
    )
    with neo4j_driver.session() as session:
       result = session.run(query).data()
-      resultData = result[0]
-   
-   resultData['n1']['data'] = converterJWT.decodeJWT(resultData['n1']['data'])
-   resultData['n2']['data'] = converterJWT.decodeJWT(resultData['n2']['data'])
-   data = {
-      "base": hashlib.md5(resultData['n1']['data']['base'].encode('utf-8')).hexdigest(),
-      "relationship": resultData['r'][1],
-      "filename": resultData['n2']['data']['filename'],
-      "format": resultData['n2']['data']['format'],
-      "path": resultData['n2']['data']['path'],
-      "size": resultData['n2']['data']['size']
-   }
-   return data
+      resultData = result
+   dataArray = []
+   for i in resultData:
+      i['n1']['data'] = converterJWT.decodeJWT(i['n1']['data'])
+      i['n2']['data'] = converterJWT.decodeJWT(i['n2']['data'])
+      data = {
+         "base": i['n1']['data']['base'],
+         # "base": hashlib.md5(i['n1']['data']['base'].encode('utf-8')).hexdigest(),
+         "relationship": i['r'][1],
+         "filename": i['n2']['data']['filename'],
+         "format": i['n2']['data']['format'],
+         "path": i['n2']['data']['path'],
+         "size": i['n2']['data']['size']
+      }
+      dataArray.append(data)
+   return dataArray
