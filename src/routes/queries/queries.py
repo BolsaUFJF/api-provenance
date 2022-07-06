@@ -38,7 +38,7 @@ async def when_document_was_converted(docName: str):
       resultData = result[0]
    return resultData
 
-@router.get('/who-sent-the-document', response_description="Quem enviou o documento")
+@router.get('/who-sent-the-document/{docname}', response_description="Quem enviou o documento")
 async def who_sent_the_document(docName: str):
    query = (
       "MATCH (:Entity { name: $doc })<-[:WAS_DERIVED_FROM]-(:Entity { provType: 'document-base' })"
