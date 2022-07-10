@@ -38,7 +38,7 @@ async def when_document_was_converted(docName: str):
       resultData = result[0]
    return resultData
 
-@router.get('/who-sent-the-document/{docname}', response_description="Quem enviou o documento")
+@router.get('/who-sent-the-document/{docName}', response_description="Quem enviou o documento")
 async def who_sent_the_document(docName: str):
    query = (
       "MATCH (:Entity { name: $doc })"
@@ -49,8 +49,9 @@ async def who_sent_the_document(docName: str):
       result = session.run(query, doc=docName).data()
       resultData=result[0]
    resultData['data'] = converterJWT.decodeJWT(resultData['data'])
+   data = { resultData['user']: resultData['data']}
    print(resultData)
-   return resultData
+   return data
 
 @router.get('/get-erros', response_description="Erros capturados")
 async def get_erros():
@@ -93,3 +94,25 @@ async def get_document_info():
       }
       dataArray.append(data)
    return dataArray
+
+@router.get('/get-all-agents', response_description="Todos os agents")
+async def get_all_agents():
+   query = (
+      "MATCH (agent:Agent) "
+      "RETURN agent"
+   )
+   with neo4j_driver.session() as session:
+      result = session.run(query).data()
+      resultData = result
+
+   data = {}
+   i=0
+   for i in resultData:
+      value = i['agent']['data']
+      i['agent']['data'] = converterJWT.decodeJWT(value)
+      temp = {i['agent']['name']: i['agent']['data']}
+      # (i['agent']['name'], i['agent']['data'])
+      data.update(temp)
+      # i+=1
+
+   return data
