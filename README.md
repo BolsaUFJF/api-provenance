@@ -10,7 +10,10 @@ Projeto desenvolvido durante um projeto de iniciação científica da Universida
 
 ---
 
-## Schemas
+## Informações sobre a *API*
+Algumas informações sobre a *api*.
+
+### Schemas
 Data schemas presentes na *api*.
 
 - **ActivityModel**:
@@ -135,7 +138,7 @@ Data schemas presentes na *api*.
 
 
 
-## Rotas
+### Rotas
 Rotas presentes na *api*.
 - **Relationships Routes**: rotas referentes as relações do modelo PROV-DM
   - */relationships/was-used/post*: cria a relação de used entre uma entidade e uma atividade;
@@ -162,10 +165,11 @@ Rotas presentes na *api*.
   - */queries/get-erros*: rota para consultar todos os erros presentes no bando de dados;
   - */queries/get-document-info*: rota para consultar as informações de todos os documentos;
   - */queries/get-all-agents*: rota para consultar todos os agentes no banco de dados;
+  
 ---
 
 ## Pré-requisitos
-Iniciar uma instância do Neo4j de forma local na sua máquina ou utilizando o Neo4j AuraDB online.
+Iniciar uma instância do Neo4j de forma local ([Neo4j Desktop](https://neo4j.com/download/)) na sua máquina ou utilizando o Neo4j AuraDB online.
 
 ---
 
