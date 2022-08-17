@@ -139,12 +139,19 @@ Data schemas presentes na *api*.
 Rotas presentes na *api*.
 - **Relationships Routes**: rotas referentes as relações do modelo PROV-DM
   - */relationships/was-used/post*: cria a relação de used entre uma entidade e uma atividade;
+    - Utiliza do Schema: *ActivityEntityModel*
   - */relationships/was-generated-by/post*: cria a relação de was genrated by entre uma entidade e uma atividade;
+    - Utiliza do Schema: *ActivityEntityModel*
   - */relationships/was-associated-with/post*: cria a relação de was associated with entre uma atividade e um agente;
+    - Utiliza do Schema: *ActivityAgentModel*
   - */relationships/was-attribuited-to/post*: cria a relação de was attribuited to entre uma entidade e um agente;
+    - Utiliza do Schema: *AgentEntityModel*
   - */relationships/was-informed-by/post*: cria a relação was informed by entre duas atividades;
+    - Utiliza do Schema: *TwoActivityModel*
   - */relationships/was-derived-from/post*: cria a relação was derived from entre duas entidade;
+    - Utiliza do Schema: *TwoEntityModel*
   - */relationships/acted-on-behalf/post*: cria a relação acted on behalf entre dois agentes;
+    - Utiliza do Schema: *TwoAgentModel*
 - **Entity Routes**: rotas referentes as entidades:
   - */entity/get-last*: busca a ultima entidade inserida no banco de dados;
   - */entity/get-by-name/{name}*: busca uma entidade informando o nome (*name*) da mesma;
