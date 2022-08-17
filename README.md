@@ -5,7 +5,8 @@
 ---
 
 ## Sobre
-*API* para efetuar a captura de informações de proveniência de dados, seguindo o modelo [PROV-DM](https://www.w3.org/TR/prov-dm/) e armazenando as informações em um banco de dados de grafos ([NEO4J](https://neo4j.com/)). Codigo desenvolvido para auxiliar a [arquitetura BSPR](https://github.com/BolsaUFJF/bspr) .
+*API* para efetuar a captura de informações de proveniência de dados, seguindo o modelo [PROV-DM](https://www.w3.org/TR/prov-dm/) e armazenando as informações em um banco de dados de grafos ([NEO4J](https://neo4j.com/)). Código desenvolvido para auxiliar a [arquitetura BSPR](https://github.com/BolsaUFJF/bspr) .
+
 Projeto desenvolvido durante um projeto de iniciação científica da Universidade Federal de Juiz de Fora.
 
 ---
@@ -169,12 +170,16 @@ Rotas presentes na *api*.
 ---
 
 ## Pré-requisitos
-Iniciar uma instância do Neo4j de forma local ([Neo4j Desktop](https://neo4j.com/download/)) na sua máquina ou utilizando o Neo4j AuraDB online.
+Instalar a versão do python 3.9.
+
+Instalar e iniciar uma instância do Neo4j de forma local ([Neo4j Desktop](https://neo4j.com/download/)) em sua máquina ou utilizando o Neo4j AuraDB online.
+
+Em seguida alterar o *.env.template* para *.env* e definir a *uri*, *user* e *pwd* no arquivo. A variável *uri* é referente a url do banco de dados, a variável *user* é referente ao usuário do banco de dados e a variável *pwd* é referente a senha do banco.
 
 ---
 
 ## Execução
-Inicializar o banco de dados Neo4j primeiramente.
+Primeiramente inicializar o banco de dados Neo4j primeiramente.
 ``` shell
 # Install the requirements:
 pip install -r requirements.txt
