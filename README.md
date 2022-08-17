@@ -137,7 +137,7 @@ Data schemas presentes na *api*.
 
 ## Rotas
 Rotas presentes na *api*.
-- Relationships Routes: rotas referentes as relações do modelo PROV-DM
+- **Relationships Routes**: rotas referentes as relações do modelo PROV-DM
   - */relationships/was-used/post*: cria a relação de used entre uma entidade e uma atividade;
   - */relationships/was-generated-by/post*: cria a relação de was genrated by entre uma entidade e uma atividade;
   - */relationships/was-associated-with/post*: cria a relação de was associated with entre uma atividade e um agente;
@@ -145,10 +145,10 @@ Rotas presentes na *api*.
   - */relationships/was-informed-by/post*: cria a relação was informed by entre duas atividades;
   - */relationships/was-derived-from/post*: cria a relação was derived from entre duas entidade;
   - */relationships/acted-on-behalf/post*: cria a relação acted on behalf entre dois agentes;
-- Entity Routes: rotas referentes as entidades:
+- **Entity Routes**: rotas referentes as entidades:
   - */entity/get-last*: busca a ultima entidade inserida no banco de dados;
   - */entity/get-by-name/{name}*: busca uma entidade informando o nome (*name*) da mesma;
-- Queries on Database: rotas para efetuar consultas espeficas no banco de dados:
+- **Queries on Database**: rotas para efetuar consultas espeficas no banco de dados:
   - */queries/when-document-was-sent/{docName}*: rotas para saber quando um documento, passando o nome do mesmo (*docName*), foi enviado;
   - */queries/when-document-was-convert/{docName}*: rota para saber quando um documento, passando o nome do mesmo (*docName*), foi convertido;
   - */queries/who-sent-the-document/{docName}*: rota para saber quem enviou um documento, passando o nome do mesmo (*docName*);
